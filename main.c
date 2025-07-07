@@ -2,7 +2,7 @@
 
 int main()
 {
-    int fd;
+	int	fd;
     char    *line;
 
     fd = open("text.txt", O_RDONLY);
