@@ -4,6 +4,7 @@ char    *ft_reading(char *unfiltered_line, int fd, int *bytes_read)
 {
 
     char    *read_buffer; //read buffer is where every read() command is gonna store each read
+    char    *temp_buffer;
 
     if (!unfiltered_line)
     {
@@ -13,7 +14,7 @@ char    *ft_reading(char *unfiltered_line, int fd, int *bytes_read)
     }
     read_buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
     *bytes_read = 1;
-    while (*bytes_read > 0 && ft_strchr(unfiltered_line, '\n') == 0)
+    while (*bytes_read > 0 && ft_strchr(unfiltered_line, '\n') == NULL)
     {
         *bytes_read = read(fd, read_buffer, BUFFER_SIZE);
         if (*bytes_read == -1)
@@ -23,7 +24,8 @@ char    *ft_reading(char *unfiltered_line, int fd, int *bytes_read)
             return (NULL);
         }
         read_buffer[*bytes_read] = '\0';
-        unfiltered_line = ft_strjoin(unfiltered_line, read_buffer);
+        temp_buffer = unfiltered_line;
+        unfiltered_line = ft_strjoin(temp_buffer, read_buffer);
     }
 	return (unfiltered_line);
 }
@@ -61,16 +63,18 @@ char    *ft_save_leftovers(char *unfiltered_line)
 	if (!unfiltered_line)
 		return (NULL);
 	i = 0;
-    while(unfiltered_line[i] != '\n' || unfiltered_line[i])
-        i++;
-	if(!unfiltered_line[i])
+    while (unfiltered_line[i] && unfiltered_line[i] != '\n')
+	{
+		i++;
+	}
+	if (!unfiltered_line[i])
 		return (NULL); // in this condition here: if there's no character after incrementing i till the end, it means its on NULL character ('\0'), so it's at the end of the string. If it's at the end of the string
 	//no newline, so there's no leftovers to save, we return null or the unfiltered_line without altering it
     i++;
     line_len = ft_strlen(unfiltered_line);
     temp = ft_calloc(line_len - i, sizeof(char));
     j = 0;
-    while(i < line_len)
+    while (i < line_len)
     {
         temp[j] = unfiltered_line[i];
         j++;

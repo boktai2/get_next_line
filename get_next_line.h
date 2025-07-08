@@ -14,8 +14,8 @@ int main(void);
 char    *get_next_line(int fd);
 char    *ft_strjoin(char *s1, char *s2);
 char    *ft_strcpy(char *dest, const char *src);
-size_t  *ft_strlen(char *str);
-int ft_strchr(char *str, int c);
+int ft_strlen(char *str);
+int ft_strchr(const char *str, int c);
 void    *ft_calloc(size_t nElements, size_t sElement);
 
 # endif

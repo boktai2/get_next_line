@@ -2,7 +2,7 @@
 
 void    *ft_calloc(size_t nElements, size_t sElement)
 {
-    int i;
+    size_t i;
     char    *pointer;
 
     if (nElements == 0 || sElement == 0)
@@ -22,7 +22,7 @@ void    *ft_calloc(size_t nElements, size_t sElement)
     return ((void *)pointer);
 }
 
-int    ft_strchr(const char *str, int c)
+char    *ft_strchr(const char *str, int c)
 {
     int i;
 
@@ -30,10 +30,10 @@ int    ft_strchr(const char *str, int c)
     while (str[i])
     {
         if (str[i] == c)
-            return (1);
+            return (str + i);
         i++;
     }
-    return (0);
+    return (NULL);
 }
 
 int		ft_strlen(char *str)
