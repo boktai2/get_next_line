@@ -14,7 +14,7 @@ void    *ft_calloc(size_t nElements, size_t sElement)
     if (!pointer)
         return (NULL);
     i = 0;
-    while (i < nElements)
+    while (i < nElements * sElement) //nelements * size_of_elements because i want to 0 all the bytes
     {
         pointer[i] = 0;
         i++;
@@ -22,18 +22,36 @@ void    *ft_calloc(size_t nElements, size_t sElement)
     return ((void *)pointer);
 }
 
-char    *ft_strchr(const char *str, int c)
+/*char    *ft_strchr(const char *str, int c)
 {
     int i;
 
+    if (c == '\0')
+        return (NULL);
     i = 0;
     while (str[i])
     {
         if (str[i] == c)
-            return (str + i);
+            return ((char *)str + i);
         i++;
     }
     return (NULL);
+}*/
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	*ptr;
+
+	ptr = (char *)s;
+	while (*ptr != '\0')
+	{
+		if (*ptr == (unsigned char)c)
+			return (ptr);
+		ptr++;
+	}
+	if (*ptr == (unsigned char)c)
+		return (ptr);
+	return (NULL);
 }
 
 int		ft_strlen(char *str)
@@ -54,6 +72,7 @@ char    *ft_strcpy(char *dest, const char *src)
 
     if (!dest || !src)
         return (NULL);
+    i = 0;
     while (src[i])
     {
         dest[i] = src[i];
@@ -74,7 +93,7 @@ char    *ft_strjoin(char *s1, char *s2)
     new = ft_calloc(s1len + s2len + 1, sizeof(char));
     if (!new)
         return (NULL);
-    new = ft_strcpy(new, s1);
-    new = ft_strcpy(new + s1len, s2);
+    ft_strcpy(new, s1);
+    ft_strcpy(new + s1len, s2);
     return (new); 
 }
