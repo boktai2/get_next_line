@@ -12,7 +12,7 @@ char    *ft_reading(char *unfiltered_line, int fd, int *bytes_read)
         if (!unfiltered_line)
         return (NULL);
     }
-    read_buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
+    read_buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
     if (!read_buffer)
         return (NULL);
     *bytes_read = 1;
@@ -76,7 +76,7 @@ char    *ft_save_leftovers(char *unfiltered_line)
     }
     i++;
     line_len = (int)ft_strlen(unfiltered_line);
-    temp = ft_calloc(line_len - i, sizeof(char));
+    temp = ft_calloc(line_len - i + 1, sizeof(char));
     j = 0;
     while (i <= line_len)
     {
@@ -85,7 +85,6 @@ char    *ft_save_leftovers(char *unfiltered_line)
         i++;
     }
     free(unfiltered_line);
-    temp[j] = '\0';
     return (temp);
 }
 
