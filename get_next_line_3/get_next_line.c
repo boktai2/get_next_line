@@ -99,9 +99,12 @@ char    *get_next_line(int fd)
         return (NULL);
     unfiltered_line = ft_reading(unfiltered_line, fd, &bytes_read);
     //printf("DEBUG 3: unfiltered_line received from ft_reading: %s\n",unfiltered_line);
-    line = ft_clean_line(unfiltered_line);
     if (!unfiltered_line || !*unfiltered_line)
+    {
+        free(unfiltered_line);
         return (NULL);
+    }
+    line = ft_clean_line(unfiltered_line);
     //printf("DEBUG 4: line after ft_clean_line: %s\n", line);
     unfiltered_line = ft_save_leftovers(unfiltered_line);
     //printf("DEBUG 5: unfiltered_line after deleting 'line' from it, leaving only the leftovers: %s\n", unfiltered_line);

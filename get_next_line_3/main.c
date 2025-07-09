@@ -16,6 +16,8 @@ int main()
         printf("%s", line);
         free(line);
     }
+    if (line)
+        free(line);
     close(fd);
     return (0);
 }
