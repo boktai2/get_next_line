@@ -5,7 +5,7 @@ int main()
     int fd;
     char    *line;
 
-    fd = open("tests/alternate_line_nl_no_nl", O_RDONLY);
+    fd = open("tests/big_line_no_nl", O_RDONLY);
     if (fd == -1)
     {
         printf("Error opening the file.");
