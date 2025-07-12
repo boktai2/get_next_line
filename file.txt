@@ -1,1 +1,8 @@
-marc
+	//if (ft_strchr(unfiltered_line, '\n'))
+		//return (unfiltered_line);
+
+        //if (!unfiltered_line)
+		//	return (free(read_buffer), NULL);
+
+        /*if (ft_strchr(unfiltered_line, '\n'))
+		return (unfiltered_line);*/

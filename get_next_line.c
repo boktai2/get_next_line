@@ -12,12 +12,21 @@
 
 #include "get_next_line.h"
 
-static char	*line_init(char *unfiltered_line)
+/*static char	*line_init(char *unfiltered_line)
 {
 	unfiltered_line = ft_calloc(1, sizeof(char));
 	if (!unfiltered_line)
 		return (NULL);
 	return (unfiltered_line);
+}*/
+
+void	*free_all(char	*read_buffer, char *unfiltered_line)
+{
+	free(read_buffer);
+	read_buffer = NULL;
+	free(unfiltered_line);
+	unfiltered_line = NULL;
+	return (NULL);
 }
 
 char	*ft_reading(char *unfiltered_line, int fd, int *bytes_read)
@@ -26,9 +35,7 @@ char	*ft_reading(char *unfiltered_line, int fd, int *bytes_read)
 	char	*temp_buffer;
 
 	if (!unfiltered_line)
-		unfiltered_line = line_init(unfiltered_line);
-	if (ft_strchr(unfiltered_line, '\n'))
-		return (unfiltered_line);
+		unfiltered_line = ft_calloc(1, sizeof(char));
 	read_buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!read_buffer)
 		return (NULL);
@@ -44,8 +51,6 @@ char	*ft_reading(char *unfiltered_line, int fd, int *bytes_read)
 		temp_buffer = unfiltered_line;
 		unfiltered_line = ft_strjoin(temp_buffer, read_buffer);
 		free(temp_buffer);
-		if (!unfiltered_line)
-			return (free(read_buffer), NULL);
 		if (ft_strchr(read_buffer, '\n'))
 			break ;
 	}

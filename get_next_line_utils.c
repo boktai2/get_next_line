@@ -12,15 +12,6 @@
 
 #include "get_next_line.h"
 
-void	*free_all(char	*read_buffer, char *unfiltered_line)
-{
-	free(read_buffer);
-	read_buffer = NULL;
-	free(unfiltered_line);
-	unfiltered_line = NULL;
-	return (NULL);
-}
-
 void	*ft_calloc(size_t nElements, size_t sElement)
 {
 	int		i;

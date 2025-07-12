@@ -17,6 +17,5 @@ char    *ft_strcpy(char *dest, const char *src);
 size_t  ft_strlen(char *str);
 char    *ft_strchr(char *str, int c);
 void    *ft_calloc(size_t nElements, size_t sElement);
-void	*free_all(char	*read_buffer, char *unfiltered_line);
 
 # endif
